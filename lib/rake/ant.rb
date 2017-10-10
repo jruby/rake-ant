@@ -28,6 +28,8 @@ class Rake::Ant
       end
       classpath_jars.uniq.each {|j| $CLASSPATH << j }
     end
+  rescue Errno::ENOENT
+    raise RuntimeError, "Could not execute `#{ant_script}`. Make sure Ant is installed on the local system."
   end
 
   def self.load
