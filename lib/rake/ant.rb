@@ -1,3 +1,4 @@
+require "rake"
 require "rake/ant/version"
 
 class Rake::Ant
