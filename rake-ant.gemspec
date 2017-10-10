@@ -12,6 +12,8 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{Ant tasks and integration for Rake}
   spec.homepage      = "https://github.com/jruby/rake-ant"
 
+  spec.license       = "EPL-2.0"
+
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
   end
