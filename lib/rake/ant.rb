@@ -63,5 +63,8 @@ class Rake::Ant
   load
 end
 
+# For backward compatibility
+Ant = Rake::Ant
+
 require 'rake/ant/ant'
 require 'rake/ant/rake' if defined?(::Rake)

@@ -8,7 +8,7 @@ rescue NameError => ne
 end
 require 'rake/ant/target'
 
-class Ant
+class Rake::Ant
   java_import org.apache.tools.ant.DefaultLogger
   java_import org.apache.tools.ant.Location
   java_import org.apache.tools.ant.Project
@@ -204,17 +204,18 @@ end
 #      ant args
 #
 def ant(*args, &block)
-  Ant.ant(*args, &block)
+  Rake::Ant.ant(*args, &block)
 end
 
 # Need Rake DSL at top-level for "task" and other methods.
+require 'rake/dsl_definition'
 include Rake::DSL
 
 def ant_import(filename = 'build.xml')
-  ant = Ant.ant
+  ant = Rake::Ant.ant
 
   abs_name = File.expand_path(filename)
-  Ant::ProjectHelper.configure_project ant.project, java.io.File.new(abs_name)
+  Rake::Ant::ProjectHelper.configure_project ant.project, java.io.File.new(abs_name)
 
   ant.project.targets.each do |target_name, target|
     name = Rake.application.lookup(target_name) ? "ant_" + target_name : target_name

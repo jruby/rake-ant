@@ -1,6 +1,6 @@
 require 'java'
 
-class Ant
+class Rake::Ant
   java_import org.apache.tools.ant.Target
 
   class RakeTarget < Target
