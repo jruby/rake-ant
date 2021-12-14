@@ -40,7 +40,7 @@ class Rake::Ant
   # 1. Execute a block as a target: add_target "foo-target" { echo :message => "I am cool" }
   # 2. Execute a rake task as a target: add_target Rake.application["default"]
   def add_target(*options, &block)
-    target = options.first.respond_to?(:name) ? RakeTarget.new(self, options.first) : BlockTarget.new(self, *options, &block)
+    target = options.first.respond_to?(:prerequisites) ? RakeTarget.new(self, options.first) : BlockTarget.new(self, *options, &block)
     @project.add_target target
   end
   alias target add_target
