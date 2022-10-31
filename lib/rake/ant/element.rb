@@ -1,10 +1,12 @@
 class Rake::Ant
+  java_import org.apache.tools.ant.ExitStatusException
   java_import org.apache.tools.ant.IntrospectionHelper
   java_import org.apache.tools.ant.RuntimeConfigurable
   java_import org.apache.tools.ant.UnknownElement
 
   # preserve idempotence of Ruby wrapper as much as possible
   UnknownElement.__persistent__ = true
+  ExitStatusException.__persistent__ = true
 
   class UnknownElement
     attr_accessor :ant, :nesting
