@@ -1,0 +1,37 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ruby: ['jruby', 'jruby-head']
+      fail-fast: false
+
+    name: rake test (${{ matrix.ruby }})
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v6
+      - name: set up java 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: 21
+      - name: set up ant
+        uses: cedx/SetupAnt@v7
+      - name: set up ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: rake test
+        run: bundle exec rake test
