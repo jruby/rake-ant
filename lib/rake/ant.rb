@@ -68,4 +68,5 @@ end
 Ant = Rake::Ant
 
 require 'rake/ant/ant'
+require 'rake/ant/graph'
 require 'rake/ant/rake' if defined?(::Rake)
