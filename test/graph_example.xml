@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<project name="graph_example">
+  <target name="init"/>
+  <target name="compile" depends="init"/>
+  <target name="test.unit" depends="compile"/>
+  <target name="dist-jar" depends="init,compile"/>
+</project>
