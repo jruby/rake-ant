@@ -1,5 +1,5 @@
 def ant_task(*args, &block)
-  task(*args) do |t|
+  Rake::Task.define_task(*args) do |t|
     ant.define_tasks(&block)
   end
 end

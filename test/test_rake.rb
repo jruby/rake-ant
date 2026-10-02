@@ -12,7 +12,6 @@ end
 
 class TestRakeAntTask < Minitest::Test
   include Ant::TestHelper
-  include Rake::DSL
 
   def setup
     @app = Rake.application
@@ -26,7 +25,7 @@ class TestRakeAntTask < Minitest::Test
   def test_creates_a_rake_task_whose_body_defines_ant_tasks
     refute_includes ant.properties, "foo"
 
-    task :initial
+    Rake::Task.define_task :initial
     ant_task :ant => :initial do
       property :name => "foo", :value => "bar"
     end
