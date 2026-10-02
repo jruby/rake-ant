@@ -28,6 +28,8 @@ jobs:
           java-version: 21
       - name: set up ant
         uses: cedx/SetupAnt@v7
+      - name: set up graphviz
+        run: sudo apt-get update && sudo apt-get install -y graphviz
       - name: set up ruby
         uses: ruby/setup-ruby@v1
         with:
