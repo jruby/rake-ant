@@ -7,7 +7,7 @@ end
 # Defines a task that draws the target dependencies of an Ant build file as
 # a PNG. Requires Graphviz's `dot` on the PATH.
 def ant_graph_task(name = :'ant:graph', buildfile = 'build.xml', output = 'build_graph.png')
-  task(name) do
+  Rake::Task.define_task(name) do
     ant_import buildfile
     IO.popen(['dot', '-Tpng', '-x', '-o', output], 'w') do |dot|
       dot.write Rake::Ant.dot(ant.project)
