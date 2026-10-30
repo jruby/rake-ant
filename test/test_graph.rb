@@ -3,7 +3,6 @@ require 'tmpdir'
 
 class TestGraph < Minitest::Test
   include Ant::TestHelper
-  include Rake::DSL
 
   BUILDFILE = File.expand_path('graph_example.xml', __dir__)
 

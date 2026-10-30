@@ -207,10 +207,6 @@ def ant(*args, &block)
   Rake::Ant.ant(*args, &block)
 end
 
-# Need Rake DSL at top-level for "task" and other methods.
-require 'rake/dsl_definition'
-include Rake::DSL
-
 def ant_import(filename = 'build.xml')
   ant = Rake::Ant.ant
 
@@ -220,6 +216,6 @@ def ant_import(filename = 'build.xml')
   ant.project.targets.each do |target_name, target|
     name = Rake.application.lookup(target_name) ? "ant_" + target_name : target_name
 
-    task(name) { target.project.execute_target(target_name) }
+    Rake::Task.define_task(name) { target.project.execute_target(target_name) }
   end
 end
